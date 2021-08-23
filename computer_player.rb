@@ -1,9 +1,9 @@
 class ComputerPlayer
     def initialize(size)
         @i = 0
-        @visited_first = {}
-        @visited_second = {}
-        @locations = []
+        @visited_first = {}	# store the value:position pair if it's first time the value is seen
+        @visited_second = {}	# store the value:position pair if it's second time the value is seen
+        @locations = []		# store the board locations
         (0...size).each do |row|
             (0...size).each do |col|
                 @locations << [row, col]
@@ -19,7 +19,8 @@ class ComputerPlayer
             @visited_second[value] = pos
         end
     end
-
+	
+    # When complete a match, remove value:pos pair from both hashes
     def receive_match(pos, value)
         @visited_first.delete(value)
         @visited_second.delete(value)
